@@ -1,0 +1,45 @@
+Start working:
+- Transition the given issue to in progress
+
+Block issue:
+- Add a comment explaining why the issue is being blocked
+- Transition the given issue to in progress Blocked
+
+Unblock issue:
+- Add a comment explaining why the issue is being unblocked
+- Transition the issue status to In Queue.
+
+Close issue:
+- Fill the required fields using jira_transition_issue tool in the given issue:
+    - Change Result => customfield_10131
+        - Use one of the following:
+            - Successful -> {'id': '10162'}  ← DEFAULT
+            - Rolled Back -> {'id': '10163'}
+            - Failed -> {'id': '10164'}
+            - Cancelled -> {'id': '10165'}
+            - Rejected -> {'id': '10166'}
+    - Documentation Updated => customfield_10116
+        - Use one of the following:
+            - Yes -> {'id': '10095'}
+            - No -> {'id': '10096'}
+            - No docs changes required. -> {'id': '10151'}  ← DEFAULT
+            - Other documentation required. -> {'id': '10152'}
+            - UI change -> {'id': '10153'}
+    - Notification Sent => customfield_10129
+        - Use one of the following:
+            - Yes -> {'id': '10154'}  ← DEFAULT
+            - No -> {'id': '10155'}
+    - Monitoring Implemented => customfield_10117
+        - Use one of the following:
+            - Yes -> {'id': '10158'}  ← DEFAULT
+            - No -> {'id': '10159'}
+    - Smoke Tests => customfield_10144
+        - Use one of the following:
+            - Not Performed -> {'id': '10167'}
+            - Passed -> {'id': '10168'}  ← DEFAULT
+            - Failed -> {'id': '10169'}
+    - Resolution Summary => customfield_10112
+        - Must be filled using Atlassian Document Format (ADF)
+        - DEFAULT content:
+            - Paragraph with text: "Closed by automation"
+- Transition the given issue to Deliver

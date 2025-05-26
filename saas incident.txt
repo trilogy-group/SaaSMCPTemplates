@@ -1,0 +1,58 @@
+Start working:
+- Transition the given issue to in progress
+
+Close issue:
+- Fill the required fields in the given issue:
+    - Runbook Section => customfield_12200
+        - Use below payloads for the options:
+            - Create New Runbook -> {'id': '10073'} 
+            - Update Existing Runbook -> {'id': '18732'}
+            - Not Applicable -> {'id': '18733'} ( Use this option if the runbook section is not explicitly mentioned)
+- Transition the given issue to Closed
+
+Block issue:
+- Add a comment explaining why this issue is being blocked.
+- Fill the required field in the given issue:
+  - Blocking Reason => customfield_11121
+  - Use one of the following values based on the blocker context:
+    - Waiting on Customer Support → {'id': '17508'}
+    - Waiting on SSE/PCA → {'id': '17509'}
+    - Waiting on BU → {'id': '17510'}
+    - Waiting on External Provider → {'id': '17511'}
+    - Other Priority → {'id': '17714'}
+ - If the block is due to another linked Jira issue, set to:
+    - Waiting on SSE/PCA → {'id': '17509'}
+ - If the blocking reason cannot be determined or is not explicitly mentioned, set to:
+    - Other Priority → {'id': '17714'}
+- Transition the issue to the Blocked status using the appropriate workflow transition.
+- Do not add any comment after transitioning to Blocked status as it will automatically transition the issue from Blocked back to In Queue 
+
+Unblock issue:
+- Add a comment explaining why the issue is being unblocked
+- Transition the issue status to In Queue.
+
+Escalate to DevOps:
+For the given issue, set Escalation Level field (customfield_10067) to {'id': '10073'}
+
+Troubleshoot:
+- Troubleshoot the issue described in this Jira ticket using the aws_cli_pipeline tool. 
+   - Use the given account ID and region, analyze the issue description to identify the AWS service and resource involved (e.g., Lambda, EC2, CloudWatch Alarm).
+   - Extract key details like AlarmName, instance ID, service name, region, account ID, and status change time of the alert.
+      - check the status of the alert if its still in alaram state.
+   - Diagnose by querying relevant logs or service status using AWS CLI commands.
+     - if no logs found check from the Namespace
+   - Summarize errors or anomalies found in the logs.
+   - Recommend a resolution based on findings (e.g., code fix, scaling, config update).
+   - Make sure to log any commands used, and include a summary of findings, root cause, and resolution in the issue comment.
+
+
+
+
+# TODO: Reboot EC2
+#   
+#
+
+# TODO: 2-3 for additional flows to execute with AWS MCP
+
+#Create GHI: # TODO
+#Explain the flow how to create GH
