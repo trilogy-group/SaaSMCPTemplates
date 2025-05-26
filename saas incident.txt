@@ -1,6 +1,36 @@
 Start working:
 - Transition the given issue to in progress
 
+Troubleshoot:
+- Read and analyze the Jira issue description to understand the AWS service, resource, and nature of the problem. Derive the required action (e.g., reboot, stop, start, describe, diagnose, log check) based on context—not hardcoded logic.
+- Use the `aws_cli_pipeline` tool to perform actions. Required fields:
+    - `account_id`: extract from the issue
+    - `region`: extract from the issue
+    - `command`: construct based on the inferred action and AWS resource
+- Extract relevant identifiers from the issue such as:
+    - instance ID or resource ID
+    - service name (e.g., EC2, Lambda, CloudWatch)
+    - alarm name or CloudWatch namespace (if applicable)
+    - timestamps or state change indicators
+- Determine the current health or status of the AWS resource using appropriate AWS CLI describe commands.
+    - For EC2: use `describe-instance-status`
+    - For alarms: use `describe-alarms`
+    - For Lambda: use `get-function` or check CloudWatch logs
+- Based on the context and health/status, determine whether any AWS action is needed:
+    - Reboot, stop, or start EC2 instances
+    - Check logs for Lambda or ECS
+    - Fetch alarm state for CloudWatch issues
+    - Diagnose using logs from CloudWatch Log Group or Namespace
+- If logs or monitoring data are missing, attempt to query using `filter-log-events` under the CloudWatch namespace or known log groups.
+- Construct and run minimal AWS CLI commands using `aws_cli_pipeline` with temporary credentials.
+- Summarize findings clearly:
+    - Commands executed
+    - Output from AWS CLI
+    - Inferred action and reasoning
+    - Root cause (if found)
+    - Final status or next recommended step
+- Post this summary in the issue as a comment.
+
 Close issue:
 - Fill the required fields in the given issue:
     - Runbook Section => customfield_12200
@@ -32,27 +62,8 @@ Unblock issue:
 - Transition the issue status to In Queue.
 
 Escalate to DevOps:
-For the given issue, set Escalation Level field (customfield_10067) to {'id': '10073'}
-
-Troubleshoot:
-- Troubleshoot the issue described in this Jira ticket using the aws_cli_pipeline tool. 
-   - Use the given account ID and region, analyze the issue description to identify the AWS service and resource involved (e.g., Lambda, EC2, CloudWatch Alarm).
-   - Extract key details like AlarmName, instance ID, service name, region, account ID, and status change time of the alert.
-      - check the status of the alert if its still in alaram state.
-   - Diagnose by querying relevant logs or service status using AWS CLI commands.
-     - if no logs found check from the Namespace
-   - Summarize errors or anomalies found in the logs.
-   - Recommend a resolution based on findings (e.g., code fix, scaling, config update).
-   - Make sure to log any commands used, and include a summary of findings, root cause, and resolution in the issue comment.
+- Add a comment explaining why the issue is being escalated to DevOPs
+- For the given issue, set Escalation Level field (customfield_10067) to {'id': '10073'}
 
 
 
-
-# TODO: Reboot EC2
-#   
-#
-
-# TODO: 2-3 for additional flows to execute with AWS MCP
-
-#Create GHI: # TODO
-#Explain the flow how to create GH
