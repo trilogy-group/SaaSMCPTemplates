@@ -12,15 +12,12 @@ Troubleshoot:
     - service name (e.g., EC2, Lambda, CloudWatch)
     - alarm name or CloudWatch namespace (if applicable)
     - timestamps or state change indicators
-- Determine the current health or status of the AWS resource using appropriate AWS CLI describe commands.
-    - For EC2: use `describe-instance-status`
-    - For alarms: use `describe-alarms`
-    - For Lambda: use `get-function` or check CloudWatch logs
-- Based on the context and health/status, determine whether any AWS action is needed:
+- Based on the context, determine the AWS action is needed:
     - Reboot, stop, or start EC2 instances
     - Check logs for Lambda or ECS
     - Fetch alarm state for CloudWatch issues
     - Diagnose using logs from CloudWatch Log Group or Namespace
+    - Perform the action mentioned as per the context.
 - If logs or monitoring data are missing, attempt to query using `filter-log-events` under the CloudWatch namespace or known log groups.
 - Construct and run minimal AWS CLI commands using `aws_cli_pipeline` with temporary credentials.
 - Summarize findings clearly:
