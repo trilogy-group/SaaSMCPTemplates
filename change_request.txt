@@ -19,14 +19,13 @@ Troubleshoot:
     - Diagnose using logs from CloudWatch Log Group or Namespace
     - Perform the action mentioned as per the context.
 - If logs or monitoring data are missing, attempt to query using `filter-log-events` under the CloudWatch namespace or known log groups.
-- Construct and run minimal AWS CLI commands using `aws_cli_pipeline` with temporary credentials.
-- Summarize findings clearly:
-    - Commands executed
-    - Output from AWS CLI
-    - Inferred action and reasoning
-    - Root cause (if found)
-    - Final status or next recommended step
-- Post this summary in the issue as a comment.
+- Construct and run minimal AWS CLI commands using `aws_cli_pipeline` tool.
+- Follow this output structure and add a comment in jira:
+     - "Actions taken:"
+     - "Findings:"
+     - "Result:"
+     - "Next steps:"
+     - "Security check: MCP rules followed"
 
 Close Issue:
 Before transitioning, fill in the following required fields on the issue:
