@@ -2,8 +2,8 @@ Start working:
 - Transition the given issue to in progress
 
 Troubleshoot:
-- Read and analyze the Jira issue description to understand the AWS service, resource, and nature of the problem. Derive the required action (e.g., reboot, stop, start, describe, diagnose, log check) based on context—not hardcoded logic.
-- Use the `aws_cli_pipeline` tool to perform actions. Required fields:
+- Read and analyze the Jira issue description to understand the AWS service, resource, and nature of the problem. Derive the required action (e.g., reboot, stop, start, describe, diagnose, log check) based on context.
+- Use the `aws_cli_pipeline` tool without timeout to perform actions. Required fields:
     - `account_id`: extract from the issue
     - `region`: extract from the issue
     - `command`: construct based on the inferred action and AWS resource
