@@ -65,7 +65,7 @@ Before transitioning, fill in the following required fields on the issue:
 
 Block issue:
 - Add a comment explaining why the issue is being blocked
-- Transition the given issue to in progress Blocked
+- Transition the given issue to Needs Help -> Blocked
 
 Unblock issue:
 - Add a comment explaining why the issue is being unblocked
