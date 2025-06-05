@@ -102,4 +102,27 @@ Close issue:
             - Not Applicable -> {'id': '18733'} ( Use this option if the runbook section is not explicitly mentioned)
 - Transition the given issue to Closed
 
+# MONAUTO Ticket Closure Instructions (Jira API)
+
+To close MONAUTO tickets via Jira API or curl, always use:
+
+- Transition ID for Close: 381
+- Runbook Section field (customfield_12200) must be provided as an object:
+  "customfield_12200": { "id": "18733" }  # Not Applicable
+- Ensure no blank lines in the curl command and use backslashes for line continuation.
+- You can use a JSON file for the payload if needed.
+
+## Example curl command:
+
+curl -X POST "https://trilogy-eng.atlassian.net/rest/api/2/issue/<ISSUE_KEY>/transitions" \
+  -H "Content-Type: application/json" \
+  -u bhanu.eravatri@trilogy.com:<API_TOKEN> \
+  -d '{
+    "transition": { "id": "381" },
+    "fields": {
+      "customfield_12200": { "id": "18733" }
+    }
+  }'
+
+# End of MONAUTO closure instructions
 
